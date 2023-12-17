@@ -1,0 +1,19 @@
+#!/bin/sh
+
+# script/bootstrap: Resolve all dependencies that the application requires to
+#                   run.
+
+set -e
+
+cd "$(dirname "$0")/.."
+
+ECHO_PREPEND="${0##*/} ==>"
+
+echo "$ECHO_PREPEND START"
+
+if ! [ -e ".git/hooks/pre-commit" ]; then
+    echo "$ECHO_PREPEND installing the pre-commit script"
+    pre-commit install
+fi
+
+echo "$ECHO_PREPEND END"
